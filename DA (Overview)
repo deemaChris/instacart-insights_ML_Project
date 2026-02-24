@@ -1,0 +1,19 @@
+import streamlit as st
+import pandas as pd
+
+st.title("---Overview---")
+
+df = pd.read_csv("results/final_dataset.csv")
+
+total_revenue = df["revenue"].sum()
+total_orders = df["order_id"].nunique()
+avg_basket = df.groupby("order_id").size().mean()
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Total Revenue", f"€{total_revenue:,.2f}")
+col2.metric("Total Orders", total_orders)
+col3.metric("Avg Basket Size", round(avg_basket, 2))
+
+st.markdown("### Business Recommendation")
+st.info("High-value bundles should be promoted to premium clusters.")
