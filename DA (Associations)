@@ -1,0 +1,17 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+st.title("---Product Associations---")
+
+rules = pd.read_csv("results/association_rules.csv")
+
+top_rules = rules.sort_values("lift", ascending=False).head(10)
+
+st.dataframe(top_rules)
+
+fig = px.bar(top_rules, x="lift", y="rule_name")
+st.plotly_chart(fig)
+
+st.markdown("### Business Insight")
+st.info("Customers buying X are highly likely to also buy Y.")
