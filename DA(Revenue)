@@ -1,0 +1,13 @@
+import streamlit as st
+
+st.title("Revenue Simulation")
+
+discount = st.slider("Select Discount %", 0, 50, 10)
+
+base_revenue = 100000
+simulated_revenue = base_revenue * (1 - discount/100) * 1.15
+
+st.metric("Simulated Revenue", f"€{simulated_revenue:,.2f}")
+
+st.markdown("### Interpretation")
+st.info("Targeted discounting can improve revenue depending on elasticity.")
