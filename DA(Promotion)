@@ -1,0 +1,13 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+st.title("Promotion ROI")
+
+roi_df = pd.read_csv("results/promotion_efficiency.csv")
+
+fig = px.bar(roi_df, x="strategy", y="roi")
+st.plotly_chart(fig)
+
+st.markdown("### Conclusion")
+st.info("Targeted promotions generate higher ROI than blanket discounts.")
